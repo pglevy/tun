@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TŪN - Sound Bath Meditation with Sophia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #F5F1EB;
+      --warm-white: #FDFCFA;
+      --terracotta: #D4A59A;
+      --deep-clay: #8B6F5C;
+      --charcoal: #3A3530;
+      --accent-gold: #C9A97D;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--warm-white);
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--warm-white) 0%, var(--sand) 100%);
+    }
+
+    .wave-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: -40px;
+      opacity: 0;
+      animation: fadeIn 2s ease-out 0.5s forwards;
+    }
+
+    .sine-wave {
+      animation: wave 8s ease-in-out infinite;
+    }
+
+    .sine-wave:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .sine-wave:nth-child(3) {
+      animation-delay: 1s;
+    }
+
+    @keyframes wave {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-20px);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out 0.8s backwards;
+    }
+
+    .hero h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      letter-spacing: 0.02em;
+      color: var(--deep-clay);
+      font-weight: 300;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .location {
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--deep-clay);
+      font-weight: 300;
+      opacity: 0.7;
+      margin-bottom: 3rem;
+    }
+
+    .cta-button {
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 1px solid var(--deep-clay);
+      color: var(--deep-clay);
+      font-size: 0.875rem;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--warm-white);
+      transform: translateY(-2px);
+    }
+
+    /* Events Section */
+    .events-section {
+      padding: 6rem 2rem;
+      background: var(--warm-white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--deep-clay);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .event-card {
+      background: var(--sand);
+      border-radius: 0;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    .event-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .event-card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .event-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(139, 111, 92, 0.15);
+    }
+
+    .event-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      background: linear-gradient(135deg, var(--terracotta) 0%, var(--deep-clay) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--warm-white);
+      font-size: 3rem;
+      opacity: 0.3;
+    }
+
+    .event-content {
+      padding: 2rem;
+    }
+
+    .event-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+      letter-spacing: 0.02em;
+    }
+
+    .event-host {
+      font-size: 0.95rem;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+
+    .event-location {
+      font-size: 0.875rem;
+      color: var(--deep-clay);
+      margin-bottom: 0.5rem;
+      font-weight: 300;
+    }
+
+    .event-datetime {
+      font-size: 0.875rem;
+      color: var(--deep-clay);
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .event-link {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      border: 1px solid var(--deep-clay);
+      color: var(--deep-clay);
+      text-decoration: none;
+      font-size: 0.813rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      font-weight: 300;
+    }
+
+    .event-link:hover {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--warm-white);
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 6rem 2rem;
+      background: var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--terracotta), transparent);
+      opacity: 0.3;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--terracotta);
+      opacity: 0.8;
+    }
+
+    .feature-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+    }
+
+    .feature-description {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--deep-clay);
+      font-weight: 300;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 6rem 2rem;
+      background: var(--warm-white);
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.813rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--deep-clay);
+      font-weight: 400;
+    }
+
+    .form-input,
+    .form-textarea {
+      padding: 1rem;
+      border: 1px solid var(--deep-clay);
+      background: transparent;
+      color: var(--charcoal);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 2px rgba(212, 165, 154, 0.1);
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 1px solid var(--deep-clay);
+      color: var(--deep-clay);
+      font-size: 0.875rem;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      text-transform: uppercase;
+      align-self: center;
+    }
+
+    .form-submit:hover {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--warm-white);
+      transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 6rem 2rem;
+      background: var(--sand);
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about-text {
+      font-size: 1.125rem;
+      line-height: 2;
+      color: var(--deep-clay);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 2rem;
+      background: var(--warm-white);
+      text-align: center;
+      border-top: 1px solid rgba(139, 111, 92, 0.2);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--deep-clay);
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      font-weight: 300;
+    }
+
+    .social-link:hover {
+      color: var(--terracotta);
+    }
+
+    .social-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .footer-text {
+      font-size: 0.813rem;
+      color: var(--deep-clay);
+      letter-spacing: 0.05em;
+      font-weight: 300;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Scroll animations */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 100vh;
+        padding: 2rem 1.5rem;
+      }
+
+      .events-section,
+      .features-section,
+      .contact-section,
+      .about-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .events-grid,
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .social-links {
+        gap: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="wave-container">
+      <svg class="sine-wave" width="1200" height="200" style="opacity: 0.25;">
+        <polyline id="wave1" fill="none" stroke="#D4A59A" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <svg class="sine-wave" width="1200" height="200" style="opacity: 0.18;">
+        <polyline id="wave2" fill="none" stroke="#D4A59A" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      <svg class="sine-wave" width="1200" height="200" style="opacity: 0.12;">
+        <polyline id="wave3" fill="none" stroke="#D4A59A" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <h1>Escape the everyday noise with musical meditation</h1>
+      <p class="hero-subtitle">Experience the soothing serenity of a sound bath session with Sophia</p>
+      <p class="location">Northern Virginia, Washington D.C., and Maryland</p>
+      <a href="#contact" class="cta-button">Book a Session</a>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section class="events-section scroll-reveal">
+    <div class="section-header">
+      <h2 class="section-title">Upcoming Events</h2>
+      <p class="section-subtitle">Join us for transformative sound healing experiences</p>
+    </div>
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="event-image">♪</div>
+        <div class="event-content">
+          <h3 class="event-title">Sound Immersion for Rest & Renewal</h3>
+          <p class="event-host">Bear River Massage and Yoga</p>
+          <p class="event-location">29 Banks Ford Pkwy suite 109, Fredericksburg, VA</p>
+          <p class="event-datetime">Sunday, Feb 1, 2026 from 6 pm to 7 pm EST</p>
+          <a href="https://www.eventbrite.com/e/sound-immersion-for-rest-renewal-february-1-2026-tickets-1979605189411?sg=dd4213eead4e30297d026ee0c4bf4b88c35171bb449ea386b24e1f9d25dbf0515fb814d7805ce23784288a2bd41dd00a7c132002a969653f1b39149cf5d5de3bc68e77b586be7a08c399ac638d&aff=ebdsshios" class="event-link" target="_blank" rel="noopener">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section scroll-reveal">
+    <div class="section-header">
+      <h2 class="section-title">Harmony Through Sound</h2>
+      <p class="section-subtitle">Experience the transformative power of sound healing</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">∿</div>
+        <h3 class="feature-title">Resonance</h3>
+        <p class="feature-description">
+          Align your body's natural rhythms with therapeutic sound frequencies that promote deep relaxation and healing
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◉</div>
+        <h3 class="feature-title">Frequency</h3>
+        <p class="feature-description">
+          Experience carefully crafted soundscapes using singing bowls, gongs, and other instruments tuned to healing frequencies
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⟡</div>
+        <h3 class="feature-title">Attuning</h3>
+        <p class="feature-description">
+          Discover a deeper connection to yourself through the vibrational medicine of sound meditation
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section scroll-reveal" id="contact">
+    <div class="section-header">
+      <h2 class="section-title">Book a Session</h2>
+      <p class="section-subtitle">Begin your journey to tranquility and wellness</p>
+    </div>
+    <div class="contact-container">
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" name="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" name="message" class="form-textarea" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section scroll-reveal">
+    <div class="section-header">
+      <h2 class="section-title">About Sophia</h2>
+    </div>
+    <div class="about-container">
+      <p class="about-text">
+        Sophia Levy is a lifelong musician and composer who studied at Berklee College of Music and has spent decades creating, producing, and teaching music. A published songwriter and producer, her work has been featured on network television in the U.S. and across Asia. She proudly owned and ran Sophia Music Studio for over a decade, and has now returned passionately to creating music with renewed purpose and heart. Alongside her music career, Sophia has lived a deep wellness journey through yoga, meditation, movement, and mindful living. Today she brings these worlds together, offering sound healing and music meditation experiences that support calm, creativity, and whole-body wellbeing.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://instagram.com" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        Instagram
+      </a>
+      <a href="https://facebook.com" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg class="social-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        Facebook
+      </a>
+    </div>
+    <p class="footer-text">© 2026 TŪN · Sound Bath Meditation with Sophia</p>
+  </footer>
+
+  <script>
+    // Sine wave generation
+    function generateSineWave(elementId, phase) {
+      const width = 1200;
+      const height = 200;
+      const frequency = 0.015;
+      const amplitude = 30;
+      const points = [];
+
+      for (let x = 0; x < width; x += 2) {
+        const y = height / 2 + Math.sin(x * frequency + phase) * amplitude;
+        points.push(`${x},${y}`);
+      }
+
+      const polyline = document.getElementById(elementId);
+      if (polyline) {
+        polyline.setAttribute('points', points.join(' '));
+      }
+    }
+
+    // Initialize waves
+    generateSineWave('wave1', 0);
+    generateSineWave('wave2', Math.PI / 2);
+    generateSineWave('wave3', Math.PI);
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Form submission placeholder
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
