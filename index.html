@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   <style>
     :root {
       --sand: #F5F1EB;
@@ -424,6 +425,32 @@
       transform: translateY(-2px);
     }
 
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      font-weight: 300;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    .form-message.success {
+      color: var(--deep-clay);
+      background: rgba(201, 169, 125, 0.1);
+      border: 1px solid var(--accent-gold);
+    }
+
+    .form-message.error {
+      color: var(--terracotta);
+      background: rgba(212, 165, 154, 0.1);
+      border: 1px solid var(--terracotta);
+    }
+
     /* About Section */
     .about-section {
       padding: 6rem 2rem;
@@ -642,7 +669,11 @@
       <p class="section-subtitle">Begin your journey to tranquility and wellness</p>
     </div>
     <div class="contact-container">
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm"
+            hx-post="/api/contact"
+            hx-target="#form-message"
+            hx-swap="innerHTML"
+            hx-on::after-request="if(event.detail.successful) this.reset()">
         <div class="form-group">
           <label for="name" class="form-label">Name</label>
           <input type="text" id="name" name="name" class="form-input" required>
@@ -655,6 +686,7 @@
           <label for="message" class="form-label">Message</label>
           <textarea id="message" name="message" class="form-textarea" required></textarea>
         </div>
+        <div id="form-message"></div>
         <button type="submit" class="form-submit">Send Message</button>
       </form>
     </div>
@@ -756,11 +788,13 @@
       });
     });
 
-    // Form submission placeholder
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Thank you for your message! We will get back to you soon.');
-      this.reset();
+    // Debug htmx events
+    document.body.addEventListener('htmx:afterRequest', function(evt) {
+      console.log('htmx afterRequest:', {
+        successful: evt.detail.successful,
+        status: evt.detail.xhr.status,
+        responseText: evt.detail.xhr.responseText
+      });
     });
   </script>
 </body>

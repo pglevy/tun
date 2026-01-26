@@ -1,0 +1,9 @@
+{
+  "name": "tun-website",
+  "version": "1.0.0",
+  "description": "TŪN Sound Bath Meditation Website",
+  "type": "module",
+  "dependencies": {
+    "resend": "^3.2.0"
+  }
+}
