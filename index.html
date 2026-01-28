@@ -446,9 +446,48 @@
     }
 
     .about-container {
-      max-width: 800px;
+      max-width: 1200px;
       margin: 0 auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: top;
+    }
+
+    .about-image-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      aspect-ratio: 3 / 4;
+      width: 100%;
+    }
+
+    .about-image-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(212, 165, 154, 0.15) 0%, rgba(139, 111, 92, 0.1) 100%);
+      pointer-events: none;
+    }
+
+    .about-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center -70px;
+      display: block;
+    }
+
+    .about-content {
+      text-align: left;
+    }
+
+    .about-content .section-header {
+      text-align: left;
+      margin-bottom: 2rem;
     }
 
     .about-text {
@@ -563,6 +602,15 @@
       .features-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .about-image-container {
+        min-height: 400px;
       }
 
       .social-links {
@@ -682,13 +730,18 @@
 
   <!-- About Section -->
   <section class="about-section scroll-reveal">
-    <div class="section-header">
-      <h2 class="section-title">About Sophia</h2>
-    </div>
     <div class="about-container">
-      <p class="about-text">
-        Sophia Levy is a lifelong musician and composer who studied at Berklee College of Music and has spent decades creating, producing, and teaching music. A published songwriter and producer, her work has been featured on network television in the U.S. and across Asia. She proudly owned and ran Sophia Music Studio for 12 years, and has now returned passionately to creating music with renewed purpose and heart. Alongside her music career, Sophia has lived a deep wellness journey through yoga, meditation, movement, and mindful living. Today she offers music meditation, with music creation circles and movement to music in the works. All activities are music-centered wellness experiences that support calm, creativity, and whole-body wellbeing.
-      </p>
+      <div class="about-image-container">
+        <img src="sophia.jpg" alt="Sophia Levy" class="about-image">
+      </div>
+      <div class="about-content">
+        <div class="section-header">
+          <h2 class="section-title">About Sophia</h2>
+        </div>
+        <p class="about-text">
+          Sophia Levy is a lifelong musician and composer who studied at Berklee College of Music and has spent decades creating, producing, and teaching music. A published songwriter and producer, her work has been featured on network television in the U.S. and across Asia. She proudly owned and ran Sophia Music Studio for 12 years, and has now returned passionately to creating music with renewed purpose and heart. Alongside her music career, Sophia has lived a deep wellness journey through yoga, meditation, movement, and mindful living. Today she offers music meditation, with music creation circles and movement to music in the works. All activities are music-centered wellness experiences that support calm, creativity, and whole-body wellbeing.
+        </p>
+      </div>
     </div>
   </section>
 
