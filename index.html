@@ -49,12 +49,19 @@
     }
 
     .logo {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      letter-spacing: 0.15em;
+      display: block;
+      width: 120px;
+      height: auto;
+    }
+
+    .header-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
       color: var(--charcoal);
       text-align: center;
+      margin-top: 0.4rem;
     }
 
     /* Hero Section */
@@ -72,7 +79,7 @@
 
     .wave-container {
       position: absolute;
-      top: 50%;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 120%;
@@ -579,8 +586,7 @@
       }
 
       .logo {
-        font-size: 1rem;
-        letter-spacing: 0.12em;
+        width: 80px;
       }
 
       .hero {
@@ -620,8 +626,8 @@
 <body>
   <!-- Header -->
   <header class="header">
-    <div class="logo">TŪN</div>
-    <p>Music-Centered Wellness</p>
+    <img class="logo" src="images/tun-mark-dark.png" alt="TŪN">
+    <p class="header-tagline">Music-Centered Wellness</p>
   </header>
 
   <!-- Hero Section -->
@@ -758,7 +764,7 @@
   <section class="about-section scroll-reveal">
     <div class="about-container">
       <div class="about-image-container">
-        <img src="sophia.jpg" alt="Sophia Levy" class="about-image">
+        <img src="images/sophia.jpg" alt="Sophia Levy" class="about-image">
       </div>
       <div class="about-content">
         <div class="section-header">
