@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     // Send email using Resend
     await resend.emails.send({
-      from: 'TŪN Contact Form <onboarding@resend.dev>',
+      from: 'TŪN Contact Form <noreply@welltuned.space>',
       to: process.env.CONTACT_EMAIL, // Your email address
       subject: `New Contact Form Submission from ${name}`,
       html: `
